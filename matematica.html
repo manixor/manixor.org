@@ -48,10 +48,24 @@
         document.addEventListener('DOMContentLoaded', () => {
             const generateExercise = () => {
                 const operations = ['+', '-', '*', '/'];
-                const num1 = Math.floor(Math.random() * 100) + 1;
-                const num2 = Math.floor(Math.random() * 100) + 1;
                 const operation = operations[Math.floor(Math.random() * operations.length)];
-                const correctAnswer = eval(`${num1} ${operation} ${num2}`).toFixed(2);
+
+                let num1, num2, correctAnswer;
+
+                if (operation === '/') {
+                    num2 = Math.floor(Math.random() * 9) + 1; // Divizor între 1 și 9
+                    correctAnswer = Math.floor(Math.random() * 10) + 1; // Rezultatul întreg
+                    num1 = num2 * correctAnswer; // Pentru a asigura împărțire exactă
+                } else if (operation === '*') {
+                    num1 = Math.floor(Math.random() * 10) + 1; // Termen de o cifră
+                    num2 = Math.floor(Math.random() * 90) + 10; // Termen de două cifre
+                    correctAnswer = num1 * num2;
+                } else {
+                    num1 = Math.floor(Math.random() * 100) + 1;
+                    num2 = Math.floor(Math.random() * 100) + 1;
+                    correctAnswer = eval(`${num1} ${operation} ${num2}`);
+                }
+
                 return { num1, num2, operation, correctAnswer };
             };
 
@@ -62,17 +76,17 @@
             };
 
             const checkAnswer = (exercise) => {
-                const userAnswer = parseFloat(document.getElementById('answer').value);
+                const userAnswer = parseInt(document.getElementById('answer').value);
                 const feedback = document.getElementById('feedback');
-                if (userAnswer === parseFloat(exercise.correctAnswer)) {
+                if (userAnswer === exercise.correctAnswer) {
                     feedback.textContent = 'Felicitări! Răspunsul este corect!';
                     feedback.style.color = 'green';
-                    currentExercise = generateExercise();
-                    displayExercise(currentExercise);
                 } else {
                     feedback.textContent = `Greșit! Răspunsul corect este ${exercise.correctAnswer}`;
                     feedback.style.color = 'red';
                 }
+                currentExercise = generateExercise();
+                displayExercise(currentExercise);
             };
 
             let currentExercise = generateExercise();
