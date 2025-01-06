@@ -8,7 +8,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.4;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -17,51 +16,39 @@
         header {
             background: #0078D7;
             color: #fff;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             text-align: center;
         }
         .container {
             width: 90%;
             margin: auto;
-            overflow: hidden;
             padding: 1rem 0;
-        }
-        .hero {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .hero img {
-            max-width: 20%;
-            height: auto;
-            border-radius: 8px;
         }
         .gallery {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
-            margin: 1rem 0;
+            justify-content: center;
+            gap: 0.5rem;
         }
         .gallery img {
-            max-width: 20%;
-            margin: 0 0.5%;
+            max-width: 150px;
+            flex: 1;
             border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .gallery img:hover {
-            transform: scale(0.9);
+            transform: scale(0.95);
         }
         .features {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
             text-align: center;
         }
         .feature {
-            flex: 1;
-            padding: 0.5rem;
             background: #fff;
-            margin: 0.5rem;
+            padding: 1rem;
             border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
@@ -69,7 +56,7 @@
             background: #0078D7;
             color: #fff;
             text-align: center;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             margin-top: 1rem;
             font-size: 0.9rem;
         }
@@ -80,47 +67,21 @@
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         button:hover {
             background: #005bb5;
-        }
-        .prices p {
-            margin: 0.5rem 0;
-        }
-        .back-link {
-            text-align: left;
-            margin: 1rem;
-            font-size: 0.9rem;
-        }
-        .back-link a {
-            text-decoration: none;
-            color: #0078D7;
-            font-size: 0.9rem;
-        }
-        .back-link a:hover {
-            text-decoration: underline;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .gallery img {
                 max-width: 45%;
-                margin: 0.5rem;
-            }
-            .features {
-                flex-direction: column;
-            }
-            .feature {
-                margin: 0.5rem 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="back-link">
-        <a href="index.html">&larr; Înapoi la homepage</a>
-    </div>
     <header>
         <h1>Închiriere Suport Biciclete Thule</h1>
         <p>Transportă bicicletele în siguranță și confort cu manixor!</p>
@@ -141,11 +102,9 @@
             </div>
             <div class="feature">
                 <h2>Prețuri</h2>
-                <div class="prices">
-                    <p>100 lei/zi</p>
-                    <p>300 lei/săptămână</p>
-                    <p><strong>Garanție:</strong> 300 lei</p>
-                </div>
+                <p>100 lei/zi</p>
+                <p>300 lei/săptămână</p>
+                <p><strong>Garanție:</strong> 300 lei</p>
             </div>
             <div class="feature">
                 <h2>Contact</h2>
