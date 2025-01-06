@@ -1,0 +1,98 @@
+<!-- Matematică Page -->
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematică</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .exercise {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .exercise input {
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            margin-top: 1rem;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        #feedback {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateExercise = () => {
+                const operations = ['+', '-', '*', '/'];
+                const num1 = Math.floor(Math.random() * 100) + 1;
+                const num2 = Math.floor(Math.random() * 100) + 1;
+                const operation = operations[Math.floor(Math.random() * operations.length)];
+                const correctAnswer = eval(`${num1} ${operation} ${num2}`).toFixed(2);
+                return { num1, num2, operation, correctAnswer };
+            };
+
+            const displayExercise = (exercise) => {
+                document.getElementById('exercise').textContent = `${exercise.num1} ${exercise.operation} ${exercise.num2} = ?`;
+                document.getElementById('answer').value = '';
+                document.getElementById('feedback').textContent = '';
+            };
+
+            const checkAnswer = (exercise) => {
+                const userAnswer = parseFloat(document.getElementById('answer').value);
+                const feedback = document.getElementById('feedback');
+                if (userAnswer === parseFloat(exercise.correctAnswer)) {
+                    feedback.textContent = 'Felicitări! Răspunsul este corect!';
+                    feedback.style.color = 'green';
+                    currentExercise = generateExercise();
+                    displayExercise(currentExercise);
+                } else {
+                    feedback.textContent = `Greșit! Răspunsul corect este ${exercise.correctAnswer}`;
+                    feedback.style.color = 'red';
+                }
+            };
+
+            let currentExercise = generateExercise();
+            displayExercise(currentExercise);
+
+            document.getElementById('check').addEventListener('click', () => {
+                checkAnswer(currentExercise);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Exerciții Matematică</h1>
+    </header>
+    <div class="exercise">
+        <p id="exercise"></p>
+        <input type="number" id="answer" placeholder="Introdu răspunsul">
+        <button id="check">Verifică</button>
+        <p id="feedback"></p>
+    </div>
+</body>
+</html>
