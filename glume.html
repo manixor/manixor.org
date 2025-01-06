@@ -1,86 +1,153 @@
-<!-- Jokes Page -->
+<!-- Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glume</title>
+    <title>manixor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #e9ecef;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        header {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .logo img {
+            max-width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: #0078D7;
+        }
+        p {
+            font-size: 1.4rem;
+            color: #555;
+        }
+        nav {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .link {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            background-color: #0078D7;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .link:hover {
+            background-color: #005bb5;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1.2rem;
+            }
+            .logo img {
+                max-width: 150px;
+            }
+            .link {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Swipe functionality */
+        .joke-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            user-select: none;
         }
         .joke {
-            background: #0078D7;
-            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-            max-width: 80%;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        .nav-buttons button {
-            background: #0078D7;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .nav-buttons button:hover {
-            background: #005bb5;
+            margin: 0;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const jokes = [
+                "Știi că ai oaspeți apropiați când intră direct în casă, încălțați, și te întreabă doar după ce au călcat pe covor: 'Ah, trebuia să mă descalț?'",
+                "Când vin copiii în vizită, gălăgia este un mix între o petrecere de Revelion și un concert rock – doar că se ține la tine în sufragerie."
+            ];
+            let currentIndex = 0;
+
+            const jokeContainer = document.querySelector('.joke-container');
+            const jokeText = document.querySelector('.joke');
+
+            const updateJoke = () => {
+                jokeText.textContent = jokes[currentIndex];
+            };
+
+            const swipeHandler = (direction) => {
+                if (direction === 'left') {
+                    currentIndex = (currentIndex + 1) % jokes.length;
+                } else if (direction === 'right') {
+                    currentIndex = (currentIndex - 1 + jokes.length) % jokes.length;
+                }
+                updateJoke();
+            };
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            jokeContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            jokeContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX) swipeHandler('left');
+                if (touchEndX > touchStartX) swipeHandler('right');
+            });
+
+            updateJoke();
+        });
+    </script>
 </head>
 <body>
     <header>
         <h1>Glume</h1>
     </header>
-    <div class="joke" id="joke-box">"Știi că ai oaspeți apropiați când intră direct în casă, încălțați, și te întreabă doar după ce au călcat pe covor: *'Ah, trebuia să mă descalț?'*."</div>
-    <div class="nav-buttons">
-        <button onclick="prevJoke()">Previous</button>
-        <button onclick="nextJoke()">Next</button>
+    <div class="joke-container">
+        <p class="joke"></p>
     </div>
-    <footer>
-        <p>&copy; 2025 manixor - Glume. Toate drepturile rezervate.</p>
-    </footer>
-
-    <script>
-        const jokes = [
-            "Știi că ai oaspeți apropiați când intră direct în casă, încălțați, și te întreabă doar după ce au călcat pe covor: *'Ah, trebuia să mă descalț?'*.",
-            "Când vin copiii în vizită, gălăgia este un mix între o petrecere de Revelion și un concert rock – doar că se ține la tine în sufragerie."
-        ];
-
-        let currentJokeIndex = 0;
-
-        function showJoke(index) {
-            const jokeBox = document.getElementById('joke-box');
-            jokeBox.textContent = jokes[index];
-        }
-
-        function nextJoke() {
-            currentJokeIndex = (currentJokeIndex + 1) % jokes.length;
-            showJoke(currentJokeIndex);
-        }
-
-        function prevJoke() {
-            currentJokeIndex = (currentJokeIndex - 1 + jokes.length) % jokes.length;
-            showJoke(currentJokeIndex);
-        }
-    </script>
 </body>
 </html>
