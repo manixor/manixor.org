@@ -1,3 +1,4 @@
+<!-- Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,7 @@
             justify-content: center;
             align-items: center;
             gap: 2rem;
+            flex-wrap: wrap;
         }
         .logos img {
             max-width: 200px;
@@ -66,6 +68,23 @@
             color: white;
             width: 100%;
             font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1.2rem;
+            }
+            .logos img {
+                max-width: 150px;
+            }
+            .link {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.5rem;
+            }
         }
     </style>
 </head>
