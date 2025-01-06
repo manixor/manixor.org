@@ -23,14 +23,7 @@
             text-align: center;
             margin: 2rem 0;
         }
-        .logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .logos img {
+        .logo img {
             max-width: 200px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -82,7 +75,7 @@
             p {
                 font-size: 1.2rem;
             }
-            .logos img {
+            .logo img {
                 max-width: 150px;
             }
             .link {
@@ -91,18 +84,24 @@
             }
         }
     </style>
+    <script>
+        function displayLogo() {
+            const logoContainer = document.getElementById('logo');
+            const date = new Date();
+            const minute = date.getMinutes();
+            const logoPath = minute % 2 === 0 ? 'pics/logo_complex.webp' : 'pics/logo_simplu.webp';
+            logoContainer.innerHTML = `<img src="${logoPath}" alt="manixor logo">`;
+        }
+    </script>
 </head>
-<body>
+<body onload="displayLogo()">
     <header>
         <h1>Welcome to manixor</h1>
         <p>The art of intelligent management and organization.</p>
     </header>
-    <div class="logos">
-        <img src="pics/logo_complex.webp" alt="manixor complex logo">
-        <img src="pics/logo_simplu.webp" alt="manixor simple logo">
-    </div>
+    <div class="logo" id="logo"></div>
     <nav>
-        <a href="inchiriere.html" class="link">Pagina de închiriere suport biciclete</a>
+        <a href="inchiriere.html" class="link">Închiriere suport biciclete</a>
         <a href="glume.html" class="link">Glume</a>
     </nav>
     <footer>
