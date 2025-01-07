@@ -66,6 +66,11 @@
             width: 100%;
             font-size: 1rem;
         }
+        .visitor-info {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #0078D7;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -92,14 +97,34 @@
             const logoPath = minute % 2 === 0 ? 'pics/logo_complex.webp' : 'pics/logo_simplu.webp';
             logoContainer.innerHTML = `<img src="${logoPath}" alt="manixor logo">`;
         }
+
+        async function fetchVisitorInfo() {
+            try {
+                const response = await fetch('visitors.php');
+                const data = await response.json();
+
+                document.getElementById('online-visitors').textContent = `Vizitatori online: ${data.online}`;
+                document.getElementById('total-visitors').textContent = `Vizitatori totali: ${data.total}`;
+            } catch (error) {
+                console.error('Eroare la obținerea datelor despre vizitatori:', error);
+            }
+        }
+
+        function decreaseVisitorCount() {
+            fetch('decrease_visitors.php').catch(error => console.error('Eroare la scăderea vizitatorilor:', error));
+        }
     </script>
 </head>
-<body onload="displayLogo()">
+<body onload="displayLogo(); fetchVisitorInfo();" onunload="decreaseVisitorCount();">
     <header>
         <h1>Welcome to manixor</h1>
         <p>The art of intelligent management and organization.</p>
     </header>
     <div class="logo" id="logo"></div>
+    <div class="visitor-info">
+        <p id="online-visitors">Vizitatori online: ...</p>
+        <p id="total-visitors">Vizitatori totali: ...</p>
+    </div>
     <nav>
         <a href="inchiriere.html" class="link">Închiriere suport biciclete</a>
         <a href="glume.html" class="link">Glume</a>
