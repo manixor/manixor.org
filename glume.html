@@ -4,75 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glume</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-T5NWGJNDH4');
-    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             background-color: #f8f9fa;
-            color: #333;
-            text-align: center;
             overflow: hidden;
+        }
+        .joke-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            word-wrap: break-word;
         }
         .joke {
             font-size: 1.5rem;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            max-width: 600px;
+            color: #333;
+            margin-bottom: 20px;
         }
-        footer {
-            position: absolute;
-            bottom: 10px;
-            text-align: center;
-            width: 100%;
-            font-size: 0.9rem;
+        .instruction {
+            font-size: 1rem;
             color: #666;
         }
     </style>
-    <script>
-        const jokes = [
-            "- Cum intră un oaspete bine-crescut în casă?\n- Cu tot cu pantofi, bineînțeles!",
-            "- Ce intră în casă cu mult zgomot și iese cu mai puțin?\n- Copiii prietenilor tăi!"
-        ];
-        let currentJokeIndex = 0;
-
-        function showJoke(index) {
-            const jokeContainer = document.getElementById('joke');
-            jokeContainer.innerText = jokes[index];
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                currentJokeIndex = (currentJokeIndex - 1 + jokes.length) % jokes.length;
-                showJoke(currentJokeIndex);
-            } else if (e.key === 'ArrowRight') {
-                currentJokeIndex = (currentJokeIndex + 1) % jokes.length;
-                showJoke(currentJokeIndex);
-            }
-        });
-
-        window.onload = () => {
-            showJoke(currentJokeIndex);
-        };
-    </script>
 </head>
 <body>
-    <div class="joke" id="joke"></div>
-    <footer>&copy; 2025 manixor. All rights reserved.</footer>
+    <div class="joke-container">
+        <div class="joke" id="joke">Se încarcă gluma...</div>
+        <div class="instruction">Swipe left/right sau click pentru o altă glumă!</div>
+    </div>
+
+    <script>
+        const jokes = [
+            "Oaspetele: 'Trebuie să mă descalț la intrare?' Gazda: 'Doar dacă vrei să mai fii invitat vreodată!"",
+            "Gazda: 'Sper că copiii nu vă deranjează cu gălăgia lor!' Oaspetele: 'Ce gălăgie? Credeam că e un concert de tobe africane.'",
+            "De ce oaspeții nu se descalță niciodată? Ca să lase urme de 'apreciere' peste tot!",
+            "Copiii oaspeților au făcut o descoperire în sufragerie: cât de departe pot zbura pernele de pe canapea!",
+            "Gazda: 'Puteți să vă faceți comozi.' Oaspetele: 'Perfect, am să mă descalț și am să mă urc pe canapea!'",
+            "Oaspetele: 'Ce frumos e covorul vostru! De unde l-ați luat?' Gazda: 'Era frumos, până ai intrat încălțat pe el.'",
+            "De ce oltenii iau ușa cu ei când pleacă în concediu? Ca să aibă unde să bată cine vine în vizită!",
+            "Blonda: 'Am cumpărat un puzzle și scrie pe el 3-5 ani. Eu l-am făcut în doar două luni!'",
+            "Profesoara: 'Ionel, de ce întârzii mereu la școală?' Ionel: 'Doamna, dacă știam, veneam mai devreme!'",
+            "De ce IT-iștii nu fac sport? Pentru că au auzit că e nevoie de sudoare și preferă să facă debugging!",
+            "Polițistul oprește o mașină: 'De ce mergeți cu 20 km/h?' Șoferul: 'Scria pe indicator DN20!'",
+            "De ce oltenii își pun becuri pe scaun? Ca să stea mai luminați!",
+            "Copilul: 'Tati, am luat 2 la matematică!' Tatăl: 'Cum așa?' Copilul: 'Profesorul nu știe tabla înmulțirii corect!'",
+            "Blonda la telefon: 'Bună, sunt acasă.' Prietena: 'Păi sună-mă când pleci!'",
+            "Cum se numește un oltean pe Lună? Primul!",
+            "Profesoara: 'Care este cel mai important organ?' Elevul: 'Telefonul, doamna!'",
+            "Ce face un IT-ist când vede foc? Face backup la tot!",
+            "Polițistul: 'Știi de ce te-am oprit?' Șoferul: 'Să mă întrebați cum merge mașina asta nouă!'",
+            "De ce pun copiii semne pe pereți? Ca să știe unde a fost ultima dată mingea!",
+            "Olteanul în avion: 'Puteți să mergeți mai încet, vreau să fac o poză bună!'"
+        ];
+
+        const jokeElement = document.getElementById('joke');
+
+        function showRandomJoke() {
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            jokeElement.textContent = jokes[randomIndex];
+        }
+
+        // Initial joke
+        showRandomJoke();
+
+        // Event listeners for swipe and click
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleGesture() {
+            if (touchEndX < touchStartX) {
+                showRandomJoke(); // Swipe left
+            }
+            if (touchEndX > touchStartX) {
+                showRandomJoke(); // Swipe right
+            }
+        }
+
+        document.body.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.body.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        document.body.addEventListener('click', () => {
+            showRandomJoke();
+        });
+    </script>
 </body>
 </html>
