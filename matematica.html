@@ -85,8 +85,10 @@
                     feedback.textContent = `Greșit! Răspunsul corect este ${exercise.correctAnswer}`;
                     feedback.style.color = 'red';
                 }
-                currentExercise = generateExercise();
-                displayExercise(currentExercise);
+                setTimeout(() => {
+                    currentExercise = generateExercise();
+                    displayExercise(currentExercise);
+                }, 3000); // Wait for 3 seconds before next exercise
             };
 
             let currentExercise = generateExercise();
