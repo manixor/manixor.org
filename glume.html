@@ -1,156 +1,78 @@
-<!-- Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manixor</title>
+    <title>Glume</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T5NWGJNDH4');
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e9ecef;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        header {
-            text-align: center;
-            margin: 2rem 0;
-        }
-        .logo img {
-            max-width: 200px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin: 1rem 0;
-            color: #0078D7;
-        }
-        p {
-            font-size: 1.4rem;
-            color: #555;
-        }
-        nav {
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-        .link {
-            text-decoration: none;
-            color: white;
-            font-size: 1.4rem;
-            font-weight: bold;
-            background-color: #0078D7;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .link:hover {
-            background-color: #005bb5;
-        }
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-            width: 100%;
-            font-size: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            p {
-                font-size: 1.2rem;
-            }
-            .logo img {
-                max-width: 150px;
-            }
-            .link {
-                font-size: 1.2rem;
-                padding: 0.8rem 1.5rem;
-            }
-        }
-
-        /* Swipe functionality */
-        .joke-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
             text-align: center;
-            user-select: none;
-            padding: 0 1rem;
-            box-sizing: border-box;
+            overflow: hidden;
         }
         .joke {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
             text-align: center;
-            margin: 0;
-            line-height: 1.5;
-            max-width: 90%;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const jokes = [
-                "Știi că ai oaspeți apropiați când intră direct în casă, încălțați, și te întreabă doar după ce au călcat pe covor: 'Ah, trebuia să mă descalț?'",
-                "Când vin copiii în vizită, gălăgia este un mix între o petrecere de Revelion și un concert rock – doar că se ține la tine în sufragerie."
-            ];
-            let currentIndex = 0;
+        const jokes = [
+            "- Cum intră un oaspete bine-crescut în casă?\n- Cu tot cu pantofi, bineînțeles!",
+            "- Ce intră în casă cu mult zgomot și iese cu mai puțin?\n- Copiii prietenilor tăi!"
+        ];
+        let currentJokeIndex = 0;
 
-            const jokeContainer = document.querySelector('.joke-container');
-            const jokeText = document.querySelector('.joke');
+        function showJoke(index) {
+            const jokeContainer = document.getElementById('joke');
+            jokeContainer.innerText = jokes[index];
+        }
 
-            const updateJoke = () => {
-                jokeText.textContent = jokes[currentIndex];
-            };
-
-            const swipeHandler = (direction) => {
-                if (direction === 'left') {
-                    currentIndex = (currentIndex + 1) % jokes.length;
-                } else if (direction === 'right') {
-                    currentIndex = (currentIndex - 1 + jokes.length) % jokes.length;
-                }
-                updateJoke();
-            };
-
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            jokeContainer.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            jokeContainer.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchEndX < touchStartX) swipeHandler('left');
-                if (touchEndX > touchStartX) swipeHandler('right');
-            });
-
-            updateJoke();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                currentJokeIndex = (currentJokeIndex - 1 + jokes.length) % jokes.length;
+                showJoke(currentJokeIndex);
+            } else if (e.key === 'ArrowRight') {
+                currentJokeIndex = (currentJokeIndex + 1) % jokes.length;
+                showJoke(currentJokeIndex);
+            }
         });
+
+        window.onload = () => {
+            showJoke(currentJokeIndex);
+        };
     </script>
 </head>
 <body>
-    <header>
-        <h1>Glume</h1>
-    </header>
-    <div class="joke-container">
-        <p class="joke"></p>
-    </div>
+    <div class="joke" id="joke"></div>
+    <footer>&copy; 2025 manixor. All rights reserved.</footer>
 </body>
 </html>

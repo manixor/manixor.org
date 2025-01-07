@@ -1,37 +1,49 @@
-<!-- Matematică Page -->
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matematică</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T5NWGJNDH4');
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-        }
-        .exercise {
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
             text-align: center;
-            margin-bottom: 2rem;
         }
-        .exercise input {
-            font-size: 1.2rem;
+        .problem {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        input[type="number"] {
             padding: 0.5rem;
-            margin-top: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
         }
         button {
-            font-size: 1.2rem;
             padding: 0.5rem 1rem;
-            background-color: #0078D7;
+            font-size: 1rem;
             color: white;
+            background-color: #0078D7;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -39,76 +51,55 @@
         button:hover {
             background-color: #005bb5;
         }
-        #feedback {
-            font-size: 1.2rem;
+        .feedback {
             margin-top: 1rem;
+            font-size: 1.2rem;
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const generateExercise = () => {
-                const operations = ['+', '-', '*', '/'];
-                const operation = operations[Math.floor(Math.random() * operations.length)];
+        let correctAnswer;
 
-                let num1, num2, correctAnswer;
+        function generateProblem() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const operation = ["+", "-", "*", "/"][Math.floor(Math.random() * 4)];
 
-                if (operation === '/') {
-                    num2 = Math.floor(Math.random() * 9) + 1; // Divizor între 1 și 9
-                    correctAnswer = Math.floor(Math.random() * 10) + 1; // Rezultatul întreg
-                    num1 = num2 * correctAnswer; // Pentru a asigura împărțire exactă
-                } else if (operation === '*') {
-                    num1 = Math.floor(Math.random() * 10) + 1; // Termen de o cifră
-                    num2 = Math.floor(Math.random() * 90) + 10; // Termen de două cifre
-                    correctAnswer = num1 * num2;
-                } else {
-                    num1 = Math.floor(Math.random() * 100) + 1;
-                    num2 = Math.floor(Math.random() * 100) + 1;
-                    correctAnswer = eval(`${num1} ${operation} ${num2}`);
-                }
+            let problem;
+            if (operation === "/") {
+                correctAnswer = num1;
+                problem = `${num1 * num2} / ${num2}`;
+            } else {
+                correctAnswer = eval(`${num1} ${operation} ${num2}`);
+                problem = `${num1} ${operation} ${num2}`;
+            }
 
-                return { num1, num2, operation, correctAnswer };
-            };
+            document.getElementById('problem').innerText = problem;
+        }
 
-            const displayExercise = (exercise) => {
-                document.getElementById('exercise').textContent = `${exercise.num1} ${exercise.operation} ${exercise.num2} = ?`;
-                document.getElementById('answer').value = '';
-                document.getElementById('feedback').textContent = '';
-            };
+        function checkAnswer() {
+            const userAnswer = Number(document.getElementById('answer').value);
+            const feedback = document.getElementById('feedback');
 
-            const checkAnswer = (exercise) => {
-                const userAnswer = parseInt(document.getElementById('answer').value);
-                const feedback = document.getElementById('feedback');
-                if (userAnswer === exercise.correctAnswer) {
-                    feedback.textContent = 'Felicitări! Răspunsul este corect!';
-                    feedback.style.color = 'green';
-                } else {
-                    feedback.textContent = `Greșit! Răspunsul corect este ${exercise.correctAnswer}`;
-                    feedback.style.color = 'red';
-                }
-                setTimeout(() => {
-                    currentExercise = generateExercise();
-                    displayExercise(currentExercise);
-                }, 3000); // Wait for 3 seconds before next exercise
-            };
+            if (userAnswer === correctAnswer) {
+                feedback.innerText = "Felicitări! Răspunsul este corect.";
+            } else {
+                feedback.innerText = `Greșit. Răspunsul corect este ${correctAnswer}.`;
+            }
 
-            let currentExercise = generateExercise();
-            displayExercise(currentExercise);
+            setTimeout(() => {
+                feedback.innerText = "";
+                document.getElementById('answer').value = "";
+                generateProblem();
+            }, 3000);
+        }
 
-            document.getElementById('check').addEventListener('click', () => {
-                checkAnswer(currentExercise);
-            });
-        });
+        window.onload = generateProblem;
     </script>
 </head>
 <body>
-    <header>
-        <h1>Exerciții Matematică</h1>
-    </header>
-    <div class="exercise">
-        <p id="exercise"></p>
-        <input type="number" id="answer" placeholder="Introdu răspunsul">
-        <button id="check">Verifică</button>
-        <p id="feedback"></p>
-    </div>
+    <div class="problem" id="problem"></div>
+    <input type="number" id="answer" placeholder="Răspunsul tău">
+    <button onclick="checkAnswer()">Verifică</button>
+    <div class="feedback" id="feedback"></div>
 </body>
 </html>

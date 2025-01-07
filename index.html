@@ -1,10 +1,18 @@
-<!-- Homepage -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>manixor</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T5NWGJNDH4');
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,11 +74,6 @@
             width: 100%;
             font-size: 1rem;
         }
-        .visitor-info {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            color: #0078D7;
-        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -97,37 +100,14 @@
             const logoPath = minute % 2 === 0 ? 'pics/logo_complex.webp' : 'pics/logo_simplu.webp';
             logoContainer.innerHTML = `<img src="${logoPath}" alt="manixor logo">`;
         }
-
-        async function updateVisitorCount() {
-            const namespace = 'manixor'; // Your namespace for CountAPI
-            const key = 'total_visitors'; // Key for your visitor count
-
-            try {
-                // Increment the total visitor count
-                const totalResponse = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-                const totalData = await totalResponse.json();
-
-                document.getElementById('total-visitors').textContent = `Vizitatori totali: ${totalData.value}`;
-
-                // Simulate online visitors (this feature is not supported by CountAPI directly)
-                const onlineVisitors = Math.floor(Math.random() * 10) + 1; // Simulate 1-10 visitors online
-                document.getElementById('online-visitors').textContent = `Vizitatori online: ${onlineVisitors}`;
-            } catch (error) {
-                console.error('Eroare la actualizarea numărului de vizitatori:', error);
-            }
-        }
     </script>
 </head>
-<body onload="displayLogo(); updateVisitorCount();">
+<body onload="displayLogo();">
     <header>
         <h1>Welcome to manixor</h1>
         <p>The art of intelligent management and organization.</p>
     </header>
     <div class="logo" id="logo"></div>
-    <div class="visitor-info">
-        <p id="online-visitors">Vizitatori online: ...</p>
-        <p id="total-visitors">Vizitatori totali: ...</p>
-    </div>
     <nav>
         <a href="inchiriere.html" class="link">Închiriere suport biciclete</a>
         <a href="glume.html" class="link">Glume</a>
