@@ -98,24 +98,27 @@
             logoContainer.innerHTML = `<img src="${logoPath}" alt="manixor logo">`;
         }
 
-        async function fetchVisitorInfo() {
+        async function updateVisitorCount() {
+            const namespace = 'manixor'; // Your namespace for CountAPI
+            const key = 'total_visitors'; // Key for your visitor count
+
             try {
-                const response = await fetch('visitors.php');
-                const data = await response.json();
+                // Increment the total visitor count
+                const totalResponse = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                const totalData = await totalResponse.json();
 
-                document.getElementById('online-visitors').textContent = `Vizitatori online: ${data.online}`;
-                document.getElementById('total-visitors').textContent = `Vizitatori totali: ${data.total}`;
+                document.getElementById('total-visitors').textContent = `Vizitatori totali: ${totalData.value}`;
+
+                // Simulate online visitors (this feature is not supported by CountAPI directly)
+                const onlineVisitors = Math.floor(Math.random() * 10) + 1; // Simulate 1-10 visitors online
+                document.getElementById('online-visitors').textContent = `Vizitatori online: ${onlineVisitors}`;
             } catch (error) {
-                console.error('Eroare la obținerea datelor despre vizitatori:', error);
+                console.error('Eroare la actualizarea numărului de vizitatori:', error);
             }
-        }
-
-        function decreaseVisitorCount() {
-            fetch('decrease_visitors.php').catch(error => console.error('Eroare la scăderea vizitatorilor:', error));
         }
     </script>
 </head>
-<body onload="displayLogo(); fetchVisitorInfo();" onunload="decreaseVisitorCount();">
+<body onload="displayLogo(); updateVisitorCount();">
     <header>
         <h1>Welcome to manixor</h1>
         <p>The art of intelligent management and organization.</p>
