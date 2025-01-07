@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Închiriere suport biciclete</title>
+    <title>Închiriere Suport Biciclete Thule</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
     <script>
@@ -19,98 +19,63 @@
             margin: 0;
             padding: 0;
             background-color: #f8f9fa;
-            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
             text-align: center;
         }
-        header {
-            background-color: #0078D7;
-            color: white;
-            padding: 1rem 0;
+        h1 {
+            color: #007bff;
         }
-        header h1 {
-            margin: 0;
-        }
-        .content {
-            padding: 2rem;
-        }
-        .gallery {
+        .image-gallery {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .gallery img {
-            max-width: 300px;
-            border-radius: 8px;
+        .image-gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .prices {
-            margin: 2rem 0;
-            font-size: 1.2rem;
-            color: #555;
+        .buttons {
+            margin: 20px 0;
         }
-        .contact {
-            margin: 2rem 0;
-            font-size: 1.2rem;
-        }
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-            width: 100%;
-            font-size: 1rem;
-        }
-        .link {
+        .buttons a {
             display: inline-block;
-            margin-top: 1rem;
+            margin: 10px;
+            padding: 10px 20px;
             text-decoration: none;
             color: white;
-            background-color: #0078D7;
-            padding: 0.5rem 1rem;
+            background-color: #007bff;
             border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .link:hover {
-            background-color: #005bb5;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .gallery img {
-                max-width: 100%;
-            }
-            .prices, .contact {
-                font-size: 1rem;
-            }
+        .buttons a:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Închiriere suport biciclete Thule</h1>
-    </header>
-    <div class="content">
-        <section class="gallery">
-            <img src="pics/1.jpg" alt="Suport biciclete Thule cu 4 biciclete">
-            <img src="pics/2.jpg" alt="Suport Thule detaliu">
-            <img src="pics/3.jpg" alt="Suport Thule montat">
-            <img src="pics/4.jpg" alt="Suport Thule și biciclete">
-        </section>
-        <div class="prices">
-            <p><strong>100 lei/zi</strong></p>
-            <p><strong>300 lei/săptămână</strong></p>
-            <p>Garanție: 300 lei</p>
+    <div class="container">
+        <h1>Închiriere Suport Biciclete Thule</h1>
+        <p>Închiriază un suport de biciclete Thule de înaltă calitate pentru călătoriile tale. Simplu, rapid și sigur!</p>
+        <p>Suportul poate transporta până la 4 biciclete, iar conectorul este de 7 pini.</p>
+        
+        <div class="image-gallery">
+            <img src="pics/bike_rack1.jpg" alt="Suport Biciclete Thule">
+            <img src="pics/bike_rack2.jpg" alt="Suport Biciclete Thule">
+            <img src="pics/bike_rack3.jpg" alt="Suport Biciclete Thule">
         </div>
-        <div class="contact">
-            <p>Locație: Dumbrăvița, str. Simfoniei 81</p>
-            <p>Telefon: <a href="tel:+40741100085">+40 741 100 085</a></p>
-            <p>Email: <a href="mailto:manixor@gmail.com">manixor@gmail.com</a></p>
+
+        <div class="buttons">
+            <a href="tel:+40741100085">Call</a>
+            <a href="mailto:manixor@gmail.com">Send Email</a>
+            <a href="https://goo.gl/maps/example">Google Maps</a>
         </div>
-        <a href="index.html" class="link">Înapoi la homepage</a>
     </div>
-    <footer>
-        <p>&copy; 2025 manixor. All rights reserved.</p>
-    </footer>
 </body>
 </html>
