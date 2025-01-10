@@ -21,10 +21,20 @@
         h1 {
             color: #007bff;
         }
-        img {
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            justify-content: center;
+        }
+        .image-grid img {
             max-width: 100%;
             height: auto;
-            margin: 10px 0;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .image-grid img:hover {
+            transform: scale(0.9);
         }
         .buttons {
             margin-top: 20px;
@@ -56,9 +66,11 @@
         <h1>Închiriere Suport Biciclete Thule</h1>
         <p>Închiriază un suport de biciclete Thule de înaltă calitate pentru călătoriile tale. Simplu, rapid și sigur!</p>
         <p>Suportul poate transporta până la 4 biciclete, iar conectorul este de 7 pini.</p>
-        <img src="pics/1.jpg" alt="Suport biciclete Thule">
-        <img src="pics/2.jpg" alt="Suport biciclete Thule">
-        <img src="pics/3.jpg" alt="Suport biciclete Thule">
+        <div class="image-grid">
+            <img src="pics/1.jpg" alt="Suport biciclete Thule">
+            <img src="pics/2.jpg" alt="Suport biciclete Thule">
+            <img src="pics/3.jpg" alt="Suport biciclete Thule">
+        </div>
 
         <div class="price-section">
             <h2>Detalii și Prețuri</h2>
@@ -71,7 +83,7 @@
         <div class="buttons">
             <a href="tel:+40741100085">Call</a>
             <a href="mailto:manixor@gmail.com">Send Email</a>
-            <a href="https://goo.gl/maps/example" target="_blank">Google Maps</a>
+            <a href="https://www.google.com/maps?q=Simfoniei+81,+Dumbrăvița" target="_blank">Locație</a>
         </div>
     </div>
 
