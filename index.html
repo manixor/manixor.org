@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manixor - Organizează inteligent</title>
-    <meta name="description" content="Bine ai venit la manixor! Descoperă soluții inteligente pentru organizare, închiriere suporturi biciclete și activități interactive pentru copii.">
+    <title>manixor - The art of intelligent management and organization</title>
+    <meta name="description" content="Welcome to manixor! Discover intelligent solutions for organization, bike rack rentals, and interactive activities for children.">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,11 +13,19 @@
             text-align: center;
             background-color: #f8f9fa;
         }
-        .container {
+        header {
             padding: 20px;
+            background-color: #007bff;
+            color: white;
         }
-        h1 {
-            color: #007bff;
+        header h1 {
+            margin: 0;
+        }
+        .logo {
+            margin: 20px auto;
+            max-width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         nav {
             margin-top: 20px;
@@ -34,6 +42,13 @@
         nav a:hover {
             background-color: #0056b3;
         }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
     <script>
@@ -42,17 +57,29 @@
         gtag('js', new Date());
 
         gtag('config', 'G-T5NWGJNDH4');
+
+        function displayLogo() {
+            const logoContainer = document.getElementById('logo');
+            const date = new Date();
+            const minute = date.getMinutes();
+            const logoPath = minute % 2 === 0 ? 'pics/logo_complex.webp' : 'pics/logo_simplu.webp';
+            logoContainer.src = logoPath;
+        }
     </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Bine ai venit la manixor!</h1>
-        <p>Organizare inteligentă pentru viața ta de zi cu zi. Descoperă serviciile noastre:</p>
-        <nav>
-            <a href="inchiriere.html">Închiriere suport biciclete</a>
-            <a href="glume.html">Glume</a>
-            <a href="matematica.html">Exerciții matematică</a>
-        </nav>
-    </div>
+<body onload="displayLogo();">
+    <header>
+        <h1>manixor</h1>
+        <p>The art of intelligent management and organization</p>
+    </header>
+    <img id="logo" class="logo" src="" alt="manixor logo">
+    <nav>
+        <a href="inchiriere.html">Bike Rack Rentals</a>
+        <a href="glume.html">Jokes</a>
+        <a href="matematica.html">Math Exercises</a>
+    </nav>
+    <footer>
+        &copy; 2025 manixor. All rights reserved.
+    </footer>
 </body>
 </html>
