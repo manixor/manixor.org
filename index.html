@@ -16,7 +16,6 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
-            overflow: hidden;
         }
         header {
             padding: 15px;
@@ -32,25 +31,25 @@
             font-size: 1rem;
         }
         .logo {
-            margin: 10px auto;
-            max-width: 150px;
+            margin: 20px auto;
+            max-width: 200px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: nowrap;
         }
         nav a {
             flex: 1;
-            padding: 8px 10px;
+            padding: 10px 15px;
             background-color: #007bff;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: center;
         }
         nav a:hover {
@@ -61,18 +60,17 @@
             background-color: #333;
             color: white;
             font-size: 0.8rem;
-            margin-top: auto;
         }
         @media (max-width: 768px) {
             .logo {
-                max-width: 100px;
+                max-width: 150px;
             }
             nav {
                 flex-direction: column;
-                gap: 5px;
+                gap: 10px;
             }
             nav a {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
