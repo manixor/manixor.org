@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manixor - The art of intelligent management and organization</title>
+    <title>manixor - The art of intelligent management and organization.</title>
     <meta name="description" content="Bun venit la manixor! Descoperă soluții inteligente pentru organizare, închiriere suporturi biciclete și activități interactive pentru copii.">
     <style>
         body {
@@ -19,39 +19,38 @@
             overflow: hidden;
         }
         header {
-            padding: 20px;
+            padding: 15px;
             background-color: #007bff;
             color: white;
         }
         header h1 {
             margin: 0;
+            font-size: 1.8rem;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 1rem;
         }
         .logo {
-            margin: 20px auto;
-            max-width: 200px;
+            margin: 10px auto;
+            max-width: 150px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         nav {
-            margin-top: 20px;
-        }
-        nav {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 5px;
+            gap: 10px;
+            flex-wrap: nowrap;
         }
         nav a {
-            display: inline-block;
-            margin: 0;
+            flex: 1;
             padding: 8px 10px;
             background-color: #007bff;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             font-size: 0.9rem;
-            max-width: 100px;
-            overflow-wrap: break-word;
             text-align: center;
         }
         nav a:hover {
@@ -61,14 +60,17 @@
             padding: 10px;
             background-color: #333;
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         @media (max-width: 768px) {
             .logo {
-                max-width: 120px;
+                max-width: 100px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 5px;
             }
             nav a {
-                padding: 6px 8px;
                 font-size: 0.8rem;
             }
         }
