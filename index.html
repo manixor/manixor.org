@@ -1,120 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>manixor</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-T5NWGJNDH4');
-    </script>
+    <title>manixor - Organizează inteligent</title>
+    <meta name="description" content="Bine ai venit la manixor! Descoperă soluții inteligente pentru organizare, închiriere suporturi biciclete și activități interactive pentru copii.">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #e9ecef;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
             text-align: center;
+            background-color: #f8f9fa;
         }
-        header {
-            text-align: center;
-            margin: 2rem 0;
-        }
-        .logo img {
-            max-width: 200px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .container {
+            padding: 20px;
         }
         h1 {
-            font-size: 2.5rem;
-            margin: 1rem 0;
-            color: #0078D7;
-        }
-        p {
-            font-size: 1.4rem;
-            color: #555;
+            color: #007bff;
         }
         nav {
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
+            margin-top: 20px;
         }
-        .link {
+        nav a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
             text-decoration: none;
-            color: white;
-            font-size: 1.4rem;
-            font-weight: bold;
-            background-color: #0078D7;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
-        .link:hover {
-            background-color: #005bb5;
-        }
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-            width: 100%;
-            font-size: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            p {
-                font-size: 1.2rem;
-            }
-            .logo img {
-                max-width: 150px;
-            }
-            .link {
-                font-size: 1.2rem;
-                padding: 0.8rem 1.5rem;
-            }
+        nav a:hover {
+            background-color: #0056b3;
         }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5NWGJNDH4"></script>
     <script>
-        function displayLogo() {
-            const logoContainer = document.getElementById('logo');
-            const date = new Date();
-            const minute = date.getMinutes();
-            const logoPath = minute % 2 === 0 ? 'pics/logo_complex.webp' : 'pics/logo_simplu.webp';
-            logoContainer.innerHTML = `<img src="${logoPath}" alt="manixor logo">`;
-        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-T5NWGJNDH4');
     </script>
 </head>
-<body onload="displayLogo();">
-    <header>
-        <h1>Welcome to manixor</h1>
-        <p>The art of intelligent management and organization.</p>
-    </header>
-    <div class="logo" id="logo"></div>
-    <nav>
-        <a href="inchiriere.html" class="link">Închiriere suport biciclete</a>
-        <a href="glume.html" class="link">Glume</a>
-        <a href="matematica.html" class="link">Matematică</a>
-    </nav>
-    <footer>
-        <p>&copy; 2025 manixor. All rights reserved.</p>
-    </footer>
+<body>
+    <div class="container">
+        <h1>Bine ai venit la manixor!</h1>
+        <p>Organizare inteligentă pentru viața ta de zi cu zi. Descoperă serviciile noastre:</p>
+        <nav>
+            <a href="inchiriere.html">Închiriere suport biciclete</a>
+            <a href="glume.html">Glume</a>
+            <a href="matematica.html">Exerciții matematică</a>
+        </nav>
+    </div>
 </body>
 </html>
